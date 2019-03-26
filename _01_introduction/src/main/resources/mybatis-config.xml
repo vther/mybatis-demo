@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties">
+         <!--
+         <property name="username" value="${username:ut_user}"/>
+         如果属性 'username' 没有被配置，'username' 属性的值将为 'ut_user'
+         -->
+        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/>
+    </properties>
+    <settings>
+        <!-- http://www.mybatis.org/mybatis-3/zh/logging.html
+         org.apache.ibatis.session.Configuration.Configuration() -->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="Person" type="com.vther.entity.PersonEntity"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username:root}"/>
+                <property name="password" value="${password:root}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/mysql/PersonMapper.xml"/>
+    </mappers>
+
+</configuration>
